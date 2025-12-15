@@ -11,7 +11,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { Audio } from "expo-av";
 
-const OPENAI_API_KEY = "YOUR_OPENAI_API_KEY";
+const OPENAI_API_KEY = process.env.EXPO_PUBLIC_GPT_KEY;
 
 interface VoiceFABProps {
   onTasksDetected: (tasks: string[]) => void;
@@ -66,10 +66,10 @@ export default function VoiceFAB({ onTasksDetected }: VoiceFABProps) {
   }
 
   async function transcribeAudio(uri: string) {
-    if (OPENAI_API_KEY === "YOUR_OPENAI_API_KEY") {
+    if (!OPENAI_API_KEY) {
       Alert.alert(
         "Configuration Missing",
-        "Please add your OpenAI API Key in VoiceFAB.tsx to use this feature."
+        "Please add your OpenAI API Key to use this feature."
       );
       setProcessing(false);
       return;
