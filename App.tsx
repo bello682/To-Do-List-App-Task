@@ -26,7 +26,7 @@ export default function App() {
           headerTitleStyle: { fontWeight: "bold" },
         }}
       >
-        <Stack.Screen
+        {/* <Stack.Screen
           name="MyTasks"
           component={HomeScreen}
           options={({
@@ -43,6 +43,25 @@ export default function App() {
                 <Ionicons name="add" size={28} color="#fff" />
               </TouchableOpacity>
             ),
+          })}
+        /> */}
+
+        <Stack.Screen
+          name="MyTasks"
+          component={HomeScreen}
+          options={({ navigation }) => ({
+            title: "My Tasks",
+            headerRight: () => (
+              <TouchableOpacity
+                onPress={() => navigation.navigate("AddTask")}
+                style={{ marginRight: 15 }}
+              >
+                <Ionicons name="add" size={28} color="#fff" />
+              </TouchableOpacity>
+            ),
+            // Ensure the header style is set here or in the Navigator
+            headerStyle: { backgroundColor: "#6200ea" },
+            headerTintColor: "#fff",
           })}
         />
         <Stack.Screen
